@@ -39,13 +39,13 @@
         >
           <img
             v-if="isDark"
-            src="../assets/icons/moon.svg"
+            src="@/assets/icons/moon.svg"
             alt="Moon"
             class="w-4 h-4 filter brightness-0"
           />
           <img
             v-else
-            src="../assets/icons/sun.svg"
+            src="@/assets/icons/sun.svg"
             alt="Sun"
             class="w-4 h-4 text-yellow-400"
           />
@@ -57,9 +57,9 @@
 
 <script setup>
 import { ref } from "vue";
-import MobilePreview from "../components/MobilePreview.vue";
-import UploaderForm from "../components/UploaderForm.vue";
-import UploaderHeader from "../components/UploaderHeader.vue";
+import MobilePreview from "@/components/MobilePreview.vue";
+import UploaderForm from "@/components/UploaderForm.vue";
+import UploaderHeader from "@/components/UploaderHeader.vue";
 
 const formRef = ref(null);
 const previewData = ref({});

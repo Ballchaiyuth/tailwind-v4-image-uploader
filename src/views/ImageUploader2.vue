@@ -85,7 +85,7 @@
               class="rounded-full p-1 bg-white/50 hover:bg-white/20 transition"
             >
               <img
-                src="../assets/icons/delete.svg"
+                src="@/assets/icons/delete.svg"
                 alt="Delete"
                 class="w-5 h-5 text-white"
               />

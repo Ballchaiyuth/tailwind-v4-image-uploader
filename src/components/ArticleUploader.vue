@@ -13,7 +13,7 @@
       @click="fileInput.click()"
     >
       <img
-        src="../assets/icons/icon-upload.svg"
+        src="@/assets/icons/icon-upload.svg"
         alt="Upload Icon"
         class="h-8 w-8 opacity-60"
       />
@@ -70,7 +70,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import ImagePreview from "./ImagePreview.vue";
+import ImagePreview from "@/components/ImagePreview.vue";
 
 const props = defineProps({ clear: Number });
 const emit = defineEmits(["update"]);

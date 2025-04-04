@@ -58,7 +58,7 @@
         @click="fileInput.click()"
       >
         <img
-          src="../assets/icons/icon-upload.svg"
+          src="@/assets/icons/icon-upload.svg"
           alt="Upload Icon"
           class="h-10 w-10 opacity-80"
         />
@@ -112,7 +112,7 @@
                 class="rounded-full p-1 bg-white hover:bg-white/80 transition"
               >
                 <img
-                  src="../assets/icons/eye.svg"
+                  src="@/assets/icons/eye.svg"
                   alt="Preview"
                   class="w-5 h-5"
                 />
@@ -125,7 +125,7 @@
                 class="rounded-full p-1 bg-white hover:bg-white/80 transition"
               >
                 <img
-                  src="../assets/icons/replace.svg"
+                  src="@/assets/icons/replace.svg"
                   alt="Replace"
                   class="w-5 h-5"
                 />
@@ -138,7 +138,7 @@
                 class="rounded-full p-1 bg-white hover:bg-white/80 transition"
               >
                 <img
-                  src="../assets/icons/delete.svg"
+                  src="@/assets/icons/delete.svg"
                   alt="Delete"
                   class="w-5 h-5"
                 />

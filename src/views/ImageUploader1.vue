@@ -54,7 +54,7 @@
             class="hover:text-blue-300"
           >
             <img
-              src="../assets/icons/eye.svg"
+              src="@/assets/icons/eye.svg"
               alt="Preview"
               class="w-5 h-5 invert"
             />
@@ -67,7 +67,7 @@
             class="hover:text-blue-300"
           >
             <img
-              src="../assets/icons/replace.svg"
+              src="@/assets/icons/replace.svg"
               alt="Replace"
               class="w-5 h-5 invert"
             />
@@ -80,7 +80,7 @@
             class="hover:text-red-400"
           >
             <img
-              src="../assets/icons/delete.svg"
+              src="@/assets/icons/delete.svg"
               alt="Delete"
               class="w-5 h-5 invert"
             />

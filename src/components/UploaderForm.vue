@@ -122,8 +122,8 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import ArticleUploader from "./ArticleUploader.vue";
-import CoverUploader from "./CoverUploader.vue";
+import ArticleUploader from "@/components/ArticleUploader.vue";
+import CoverUploader from "@/components/CoverUploader.vue";
 
 const emit = defineEmits(["update-preview", "preview"]);
 const props = defineProps({

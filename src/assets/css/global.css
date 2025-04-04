@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Theme tokens */
+@theme {
+  --color-background: #1a202c; /* matches bg-gray-900 */
+  --color-text: #ffffff;
+}
+
+/* Base styles */
+@layer base {
+  body {
+    @apply bg-gray-900 text-white;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .min-h-without-header {
+    min-height: calc(100vh - 64px); /* Assuming header is 64px */
+  }
+}
+
+/* Component styles */
+@layer components {
+  .nav-link {
+    @apply px-3 py-1 rounded font-medium transition hover:bg-gray-700;
+  }
+}

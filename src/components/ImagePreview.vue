@@ -42,25 +42,21 @@
           title="Preview"
           class="p-1 bg-white rounded-full hover:bg-white/80"
         >
-          <img src="../assets/icons/eye.svg" alt="View" class="w-5 h-5" />
+          <img src="@/assets/icons/eye.svg" alt="View" class="w-5 h-5" />
         </button>
         <button
           @click.stop="triggerReplace"
           title="Replace"
           class="p-1 bg-white rounded-full hover:bg-white/80"
         >
-          <img
-            src="../assets/icons/replace.svg"
-            alt="Replace"
-            class="w-5 h-5"
-          />
+          <img src="@/assets/icons/replace.svg" alt="Replace" class="w-5 h-5" />
         </button>
         <button
           @click.stop="$emit('remove')"
           title="Delete"
           class="p-1 bg-white rounded-full hover:bg-white/80"
         >
-          <img src="../assets/icons/delete.svg" alt="Delete" class="w-5 h-5" />
+          <img src="@/assets/icons/delete.svg" alt="Delete" class="w-5 h-5" />
         </button>
       </div>
     </div>

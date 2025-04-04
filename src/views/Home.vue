@@ -4,7 +4,7 @@
   >
     <img
       alt="Upload illustration"
-      src="../assets/icons/upload-image.svg"
+      src="@/assets/icons/upload-image.svg"
       class="w-40 sm:w-52 mb-6 drop-shadow-md"
     />
 
