@@ -1,0 +1,21 @@
+{
+  "name": "vite-vue-tailwindcss-v4",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "yarn dev"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.2",
+    "tailwindcss": "^4.1.2",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "vite": "^6.2.5"
+  }
+}
