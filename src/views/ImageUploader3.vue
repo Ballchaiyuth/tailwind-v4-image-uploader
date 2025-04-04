@@ -20,21 +20,42 @@
     </div>
 
     <!-- Config Inputs -->
-    <div class="flex gap-4 items-center mb-4">
-      <label class="text-sm">
+    <div class="flex gap-4 items-center mb-4 pr-4">
+      <!-- Max Size -->
+      <label class="text-sm flex items-center gap-1">
         Max Size (KB):
-        <input
-          v-model.number="maxSizeKB"
-          type="number"
-          class="ml-1 w-20 px-1 py-0.5 rounded-sm text-black"
-        />
+        <div
+          class="flex h-[40px] items-center border border-gray-600 rounded-md bg-gray-800 focus-within:ring-2 focus-within:ring-purple-500"
+        >
+          <input
+            v-model.number="maxSizeKB"
+            type="text"
+            class="w-24 px-2 py-1 text-purple-200 bg-transparent outline-none"
+          />
+          <div class="flex flex-col">
+            <button
+              @click="maxSizeKB++"
+              class="text-xs px-1 py-0.5 hover:bg-gray-700 text-purple-300 rounded-tr-md"
+            >
+              ▲
+            </button>
+            <button
+              @click="maxSizeKB = Math.max(0, maxSizeKB - 1)"
+              class="text-xs px-1 py-0.5 hover:bg-gray-700 text-purple-300 rounded-br-md"
+            >
+              ▼
+            </button>
+          </div>
+        </div>
       </label>
+
+      <!-- Ratio -->
       <label class="text-sm">
         Ratio (e.g. 16:9):
         <input
           v-model="ratioText"
           type="text"
-          class="ml-1 w-24 px-1 py-0.5 rounded-sm text-black"
+          class="w-24 h-[40px] px-2 py-1 rounded-md bg-gray-800 text-purple-200 border border-gray-600 placeholder-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
         />
       </label>
     </div>
