@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+body {
+  @apply bg-gray-900 text-white;
+}
+
+.min-h-without-header {
+  min-height: calc(100vh - 64px); /* Assuming header is 64px tall */
+}

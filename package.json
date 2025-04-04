@@ -1,7 +1,7 @@
 {
-  "name": "vite-vue-tailwindcss-v4",
+  "name": "tailwind-v4-image-uploader",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,8 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.2",
     "tailwindcss": "^4.1.2",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.3",
