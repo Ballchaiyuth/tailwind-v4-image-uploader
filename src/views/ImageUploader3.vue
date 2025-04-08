@@ -304,7 +304,7 @@ function showAlert(message) {
   alertMessages.value.push({ id, message });
   setTimeout(() => {
     alertMessages.value = alertMessages.value.filter((a) => a.id !== id);
-  }, 3000);
+  }, 5000);
 }
 
 function onFilesSelected(event) {
