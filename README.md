@@ -1,6 +1,6 @@
 # 🎨 Tailwind Image Uploader (Vue 3 + Vite)
 
-A simple and clean image uploader showcase built with **Vue 3**, **Tailwind CSS v3**, and **Vite**.
+A simple and clean image uploader showcase built with **Vue 3**, **Tailwind CSS v4**, and **Vite**.
 
 Explore three different upload styles with drag-and-drop, preview, modal zoom, and image management.
 
@@ -11,7 +11,7 @@ Explore three different upload styles with drag-and-drop, preview, modal zoom, a
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com/Ballchaiyuth/tailwind-image-uploader.git
+git clone https://github.com/Ballchaiyuth/tailwind-v4-image-uploader.git
 cd tailwind-image-uploader
 ```
 
@@ -20,10 +20,7 @@ cd tailwind-image-uploader
 You can use either **Yarn** or **npm** — the app will start automatically after install!
 
 ```bash
-# with npm
-npm install
-
-# or with yarn
+# with yarn
 yarn
 ```
 
@@ -35,17 +32,7 @@ yarn
 
 No need to install anything — try it instantly here:
 
-👉 **[Open in StackBlitz](https://stackblitz.com/~/github.com/Ballchaiyuth/tailwind-image-uploader)**
-
----
-
-## 📦 Scripts
-
-| Command           | Description                  |
-| ----------------- | ---------------------------- |
-| `npm start`       | Start development server     |
-| `npm run build`   | Build for production         |
-| `npm run preview` | Preview the production build |
+👉 **[Open in StackBlitz](https://stackblitz.com/~/github.com/Ballchaiyuth/tailwind-v4-image-uploader)**
 
 ---
 
@@ -63,3 +50,4 @@ No need to install anything — try it instantly here:
 - **Uploader 1**: Minimalist, list-based preview with basic controls.
 - **Uploader 2**: Styled uploader inspired by [Creative Tim](https://www.creative-tim.com/twcomponents/component/file-upload-with-drop-on-and-preview).
 - **Uploader 3**: Full-featured with modal zoom, pan, navigation, and mouse wheel support.
+- **Uploader 4**: Try mock Figma from UX design.

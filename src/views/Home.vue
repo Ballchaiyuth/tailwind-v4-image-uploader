@@ -13,7 +13,7 @@
     </h1>
 
     <p class="text-gray-300 max-w-xl mb-8">
-      This is a simple demo built with Vite, Vue 3, and Tailwind CSS v3. It
+      This is a simple demo built with Vite, Vue 3, and Tailwind CSS v4. It
       showcases three different image uploader interfaces — featuring
       drag-and-drop support, previews, and other basic frontend-only features.
     </p>
