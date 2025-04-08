@@ -1,4 +1,4 @@
-# 🎨 Tailwind Image Uploader (Vue 3 + Vite)
+# 🎨 Tailwind (v4) Image Uploader (Vue 3 + Vite)
 
 A simple and clean image uploader showcase built with **Vue 3**, **Tailwind CSS v4**, and **Vite**.
 
