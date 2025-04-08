@@ -175,9 +175,9 @@
 </template>
 
 <script setup>
-import { computed, nextTick, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 
-const files = ref(JSON.parse(localStorage.getItem("uploader_files") || "[]"));
+const files = ref([]);
 const isDragging = ref(false);
 const draggingIndex = ref(null);
 const replaceIndex = ref(null);
@@ -186,6 +186,12 @@ const sortOption = ref("default");
 const reverseOrder = ref(false);
 const showMockPopup = ref(false);
 const mockFileList = ref("");
+
+onMounted(() => {
+  // Clear stored files and previewUrls on initial load
+  localStorage.removeItem("uploader_files");
+  files.value = [];
+});
 
 const sortedFiles = computed(() => {
   if (sortOption.value === "manual") return files.value;
