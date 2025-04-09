@@ -325,6 +325,8 @@ function parseRatio(text) {
 
 function handleFiles(fileList) {
   const existingNames = new Set(images.value.map((img) => img.name));
+  const expectedRatio = parseRatio(ratioText.value);
+  const loadPromises = [];
 
   for (const file of fileList) {
     if (!file.type.startsWith("image/")) continue;
@@ -332,34 +334,47 @@ function handleFiles(fileList) {
     const fileSizeKB = file.size / 1024;
     if (fileSizeKB > maxSizeKB.value) {
       showAlert(
-        `File \"${file.name}\" is too large. Max allowed is ${maxSizeKB.value}KB.`,
+        `File "${file.name}" is too large. Max allowed is ${maxSizeKB.value}KB.`,
       );
       continue;
     }
 
     if (existingNames.has(file.name)) {
-      showAlert(`File name \"${file.name}\" already exists.`);
+      showAlert(`File name "${file.name}" already exists.`);
       continue;
     }
 
     const url = URL.createObjectURL(file);
 
-    const img = new Image();
-    img.onload = () => {
-      const ratio = img.width / img.height;
-      const expectedRatio = parseRatio(ratioText.value);
-      const isValidRatio = Math.abs(ratio - expectedRatio) < 0.1;
+    const promise = new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const ratio = img.width / img.height;
+        const isValidRatio = Math.abs(ratio - expectedRatio) < 0.1;
 
-      images.value.push({
-        name: file.name,
-        size: file.size,
-        url,
-        objectUrl: url,
-        invalidRatio: !isValidRatio,
-      });
-    };
-    img.src = url;
+        resolve({
+          name: file.name,
+          size: file.size,
+          url,
+          objectUrl: url,
+          invalidRatio: !isValidRatio,
+        });
+      };
+      img.onerror = () => {
+        showAlert(`Failed to load image "${file.name}".`);
+        resolve(null);
+      };
+      img.src = url;
+    });
+
+    loadPromises.push(promise);
   }
+
+  Promise.all(loadPromises).then((results) => {
+    for (const img of results) {
+      if (img) images.value.push(img);
+    }
+  });
 }
 
 function removeImage(index) {
@@ -375,18 +390,61 @@ function triggerReplace(index) {
 
 function onReplaceSelected(event) {
   const file = event.target.files[0];
-  if (file && file.type.startsWith("image/") && replaceIndex.value !== null) {
-    const url = URL.createObjectURL(file);
-    const old = images.value[replaceIndex.value];
-    URL.revokeObjectURL(old?.objectUrl);
+  const expectedRatio = parseRatio(ratioText.value);
+  const existingNames = new Set(
+    images.value.map((img, idx) => idx !== replaceIndex.value && img.name),
+  );
 
-    images.value[replaceIndex.value] = {
-      name: file.name,
-      size: file.size,
-      url,
-      objectUrl: url,
+  if (file && file.type.startsWith("image/") && replaceIndex.value !== null) {
+    const fileSizeKB = file.size / 1024;
+    if (fileSizeKB > maxSizeKB.value) {
+      showAlert(
+        `File "${file.name}" is too large. Max allowed is ${maxSizeKB.value}KB.`,
+      );
+      resetReplaceInput();
+      return;
+    }
+
+    if (existingNames.has(file.name)) {
+      showAlert(`File name "${file.name}" already exists.`);
+      resetReplaceInput();
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+
+    img.onload = () => {
+      const ratio = img.width / img.height;
+      const isValidRatio = Math.abs(ratio - expectedRatio) < 0.1;
+
+      const old = images.value[replaceIndex.value];
+      URL.revokeObjectURL(old?.objectUrl);
+
+      images.value[replaceIndex.value] = {
+        name: file.name,
+        size: file.size,
+        url,
+        objectUrl: url,
+        invalidRatio: !isValidRatio,
+      };
+
+      resetReplaceInput();
     };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      showAlert(`Failed to load image "${file.name}".`);
+      resetReplaceInput();
+    };
+
+    img.src = url;
+  } else {
+    resetReplaceInput();
   }
+}
+
+function resetReplaceInput() {
   replaceInput.value.value = "";
   replaceIndex.value = null;
 }
