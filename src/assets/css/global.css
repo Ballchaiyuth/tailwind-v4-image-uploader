@@ -25,4 +25,8 @@
   .nav-link {
     @apply px-3 py-1 rounded font-medium transition hover:bg-gray-700;
   }
+
+  .focus-style-yellow {
+    @apply focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400;
+  }
 }

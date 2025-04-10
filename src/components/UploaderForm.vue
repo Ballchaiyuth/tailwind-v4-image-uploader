@@ -52,7 +52,7 @@
       >
       <input
         type="text"
-        class="w-full border rounded-xs px-3 py-2 text-sm"
+        class="w-full border rounded-xs px-3 py-2 text-sm focus-style-yellow"
         placeholder="Please input field"
       />
     </div>
@@ -63,7 +63,7 @@
       <input
         v-model="title"
         type="text"
-        class="w-full border rounded-xs px-3 py-2 text-sm"
+        class="w-full border rounded-xs px-3 py-2 text-sm focus-style-yellow"
         placeholder="Please input title"
       />
     </div>
@@ -94,7 +94,7 @@
       >
       <input
         type="text"
-        class="w-full border rounded-xs px-3 py-2 text-sm"
+        class="w-full border rounded-xs px-3 py-2 text-sm focus-style-yellow"
         placeholder="DLD"
       />
     </div>
@@ -106,7 +106,7 @@
       >
       <textarea
         v-model="description"
-        class="w-full border rounded-xs px-3 py-2 text-sm"
+        class="w-full border rounded-xs px-3 py-2 text-sm focus-style-yellow"
         placeholder="Please input description"
       ></textarea>
     </div>
@@ -115,7 +115,10 @@
       <label class="block text-sm font-medium text-gray-600 mb-1"
         >Custom Field</label
       >
-      <input type="text" class="w-full border rounded-xs px-3 py-2 text-sm" />
+      <input
+        type="text"
+        class="w-full border rounded-xs px-3 py-2 text-sm focus-style-yellow"
+      />
     </div>
   </div>
 </template>
