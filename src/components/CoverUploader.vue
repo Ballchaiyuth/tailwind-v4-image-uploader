@@ -53,8 +53,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
 import ImagePreview from "@/components/ImagePreview.vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({ clear: Number });
 const emit = defineEmits(["update"]);

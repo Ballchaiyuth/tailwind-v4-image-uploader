@@ -22,6 +22,7 @@
       <button
         type="button"
         class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-1 rounded-xs"
+        @click="$emit('save')"
       >
         Save
       </button>
@@ -42,5 +43,5 @@
 defineProps({
   isDark: Boolean,
 });
-defineEmits(["preview", "clear"]);
+defineEmits(["preview", "clear", "save"]);
 </script>

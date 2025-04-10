@@ -121,9 +121,9 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
 import ArticleUploader from "@/components/ArticleUploader.vue";
 import CoverUploader from "@/components/CoverUploader.vue";
+import { ref, watch } from "vue";
 
 const emit = defineEmits(["update-preview", "preview"]);
 const props = defineProps({
@@ -136,6 +136,7 @@ const coverReset = ref(0);
 const articleReset = ref(0);
 const cover = ref(null);
 const images = ref([]);
+const imgs = ref([]);
 
 watch(
   () => props.clearTrigger,
@@ -162,8 +163,9 @@ function onCoverUpdate(url) {
   cover.value = url;
 }
 
-function onArticleUpdate(imgs) {
-  images.value = imgs;
+function onArticleUpdate(newImgs) {
+  imgs.value = newImgs;
+  images.value = newImgs.map((img) => img.url);
 }
 
 function handlePreview() {
@@ -171,7 +173,7 @@ function handlePreview() {
     title: title.value,
     description: description.value,
     cover: cover.value,
-    images: images.value,
+    images: imgs.value,
     likeCount: 999,
     shareCount: 100,
   };
@@ -180,6 +182,11 @@ function handlePreview() {
 }
 
 defineExpose({
+  getImageList: () =>
+    imgs.value.map((img, index) => ({
+      name: img.name || `Image ${index + 1}`,
+      url: img.url,
+    })),
   handlePreview,
 });
 </script>

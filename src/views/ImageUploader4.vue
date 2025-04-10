@@ -8,6 +8,7 @@
       :is-dark="isDark"
       @preview="handlePreview"
       @clear="handleClear"
+      @save="handleSave"
     />
 
     <!-- Content Body -->
@@ -52,14 +53,34 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div
+      v-if="showSaveModal"
+      id="save-popup"
+      class="fixed top-6 left-1/2 transform -translate-x-1/2 bg-yellow-100 text-yellow-800 border border-yellow-400 px-4 py-3 rounded-lg shadow-lg z-50 w-[90%] max-w-md"
+    >
+      <div class="flex justify-between items-center mb-2">
+        <strong class="text-yellow-700">📝 Image Order Sent</strong>
+        <button
+          @click="showSaveModal = false"
+          class="text-yellow-500 hover:text-yellow-800"
+        >
+          ✕
+        </button>
+      </div>
+      <pre class="whitespace-pre-wrap text-sm font-mono">{{
+        orderedImageNames.join("\n")
+      }}</pre>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import MobilePreview from "@/components/MobilePreview.vue";
 import UploaderForm from "@/components/UploaderForm.vue";
 import UploaderHeader from "@/components/UploaderHeader.vue";
+import { nextTick, ref } from "vue";
 
 const formRef = ref(null);
 const previewData = ref({});
@@ -72,6 +93,9 @@ const formDraft = ref({
 const clearSignal = ref(0);
 const isDark = ref(false);
 
+const showSaveModal = ref(false);
+const orderedImageNames = ref([]);
+
 function handlePreview() {
   formRef.value?.handlePreview();
 }
@@ -82,6 +106,20 @@ function handleFormPreview(data) {
 
 function updatePreviewData(newData) {
   formDraft.value = { ...formDraft.value, ...newData };
+}
+
+function handleSave() {
+  const images = formRef.value?.getImageList?.() || [];
+  orderedImageNames.value = images.map(
+    (img, i) => `${i + 1}. ${img.name || "Unnamed Image"}`,
+  );
+  showSaveModal.value = true;
+
+  nextTick(() => {
+    document
+      .getElementById("save-popup")
+      ?.scrollIntoView({ behavior: "smooth" });
+  });
 }
 
 function handleClear() {

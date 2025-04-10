@@ -108,8 +108,8 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import placeholder from "@/assets/images/go-placeholder.png";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 
 const props = defineProps({
   data: Object,
