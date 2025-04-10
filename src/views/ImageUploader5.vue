@@ -104,7 +104,11 @@
       <li
         v-for="(file, index) in sortedFiles"
         :key="file.previewUrl"
-        class="flex items-start gap-4 border-b border-orange-800 pb-4 cursor-move transition-transform duration-200 hover:scale-[1.01] hover:bg-orange-900/20 rounded"
+        class="flex items-start gap-4 border-b pb-4 cursor-move transition-transform duration-200 hover:scale-[1.01] hover:bg-orange-900/20 rounded"
+        :class="{
+          'border-red-400 bg-red-900/10': file.failed,
+          'border-orange-800': !file.failed,
+        }"
         draggable="true"
         @dragstart="onDragStart(index)"
         @dragover.prevent
@@ -125,6 +129,12 @@
             <span class="truncate">{{ file.name }}</span>
           </div>
           <div class="text-xs text-orange-400">{{ formatSize(file.size) }}</div>
+
+          <!-- Failed status message goes here -->
+          <div v-if="file.failed" class="text-xs text-red-400">
+            ❌ Mock upload failed
+          </div>
+
           <div class="flex gap-2 pt-1">
             <button
               @click="previewImage(index)"
@@ -244,6 +254,7 @@ function handleFiles(fileList) {
   for (const file of fileList) {
     if (file.type.startsWith("image/")) {
       file.previewUrl = URL.createObjectURL(file);
+      file.failed = file.name === "tralalero-tralala.png";
       files.value.push(file);
     }
   }
@@ -279,7 +290,10 @@ function clearAll() {
 }
 
 function sendToBackend() {
-  mockFileList.value = sortedFiles.value.map((f) => f.name).join("\n");
+  const result = sortedFiles.value.map((f) => {
+    return f.failed ? `❌ ${f.name} (upload failed)` : `✅ ${f.name}`;
+  });
+  mockFileList.value = result.join("\n");
   showMockPopup.value = true;
   nextTick(() => {
     const el = document.getElementById("mock-alert");
@@ -296,6 +310,9 @@ function onReplaceSelected(event) {
   const file = event.target.files[0];
   if (file && file.type.startsWith("image/")) {
     file.previewUrl = URL.createObjectURL(file);
+
+    file.failed = file.name === "tralalero-tralala.png";
+
     const current = sortedFiles.value[replaceIndex.value];
     const originalIndex = files.value.findIndex(
       (f) => f.previewUrl === current.previewUrl,
