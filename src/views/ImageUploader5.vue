@@ -254,7 +254,7 @@ function handleFiles(fileList) {
   for (const file of fileList) {
     if (file.type.startsWith("image/")) {
       file.previewUrl = URL.createObjectURL(file);
-      file.failed = file.name === "tralalero-tralala.png";
+      file.failed = isMockUploadFailed(file);
       files.value.push(file);
     }
   }
@@ -311,7 +311,7 @@ function onReplaceSelected(event) {
   if (file && file.type.startsWith("image/")) {
     file.previewUrl = URL.createObjectURL(file);
 
-    file.failed = file.name === "tralalero-tralala.png";
+    file.failed = isMockUploadFailed(file);
 
     const current = sortedFiles.value[replaceIndex.value];
     const originalIndex = files.value.findIndex(
@@ -324,5 +324,9 @@ function onReplaceSelected(event) {
   }
   replaceIndex.value = null;
   replaceInput.value.value = "";
+}
+
+function isMockUploadFailed(file) {
+  return file.name.toLowerCase().includes("fail");
 }
 </script>
